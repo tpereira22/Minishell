@@ -27,12 +27,17 @@ int	main(void)
 		command = readline(YELLOW"minishell> " RESET);
 		if (command && *command)
 			add_history(command);
+        // handles Ctrl+D
         if (command == NULL)
         {
             write(1, "\n", 1);
             free(command);
             exit(1);
         }
+        if (!check_quotation_marks(command))
+            printf("Error! Missing closing \"\n");
+        //printf("heeey\n");
+        tokenizer(command);
         free(command);
 	}
 	return (0);
