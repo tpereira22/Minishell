@@ -20,6 +20,9 @@ void    ignore_signal()
 int	main(void)
 {	
 	char	*command;
+    char **token_matrix;
+    int i;
+    int j;
 
     ignore_signal();
 	while (1)
@@ -28,16 +31,27 @@ int	main(void)
 		if (command && *command)
 			add_history(command);
         // handles Ctrl+D
-        if (command == NULL)
+        if (command == NULL || !strcmp(command, "exit"))
         {
             write(1, "\n", 1);
             free(command);
             exit(1);
         }
-        if (!check_quotation_marks(command))
-            printf("Error! Missing closing \"\n");
+        token_matrix = tokenizer(command);
+        i = 0;
+        while (token_matrix[i])
+        {
+            j = 0;
+            while (token_matrix[i][j])
+            {
+                printf("%c", token_matrix[i][j]);
+                j++;
+            }
+            printf("\n");
+            i++;
+        }
+        free_token(token_matrix);
         //printf("heeey\n");
-        tokenizer(command);
         free(command);
 	}
 	return (0);

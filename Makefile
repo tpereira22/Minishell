@@ -4,11 +4,11 @@ RED		= 	\e[31m
 GREEN	= 	\e[32m
 RESET	= 	\e[0m
 
-SRCS	=	minishell.c check_str.c tokenizer.c
+SRCS	=	minishell.c check_str.c tokenizer.c utils.c
 OBJS	=	$(SRCS:.c=.o)
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 READ	=	-lreadline
 
 LIBFTA	=	./libft/libft.a
@@ -16,25 +16,21 @@ LIBFTA	=	./libft/libft.a
 RM		= 	rm -fr
 
 %.o: %.c
-			$(CC) $(CFLAGS) -c $< -o $@
+				$(CC) $(CFLAGS) -c $< -o $@
 
 all:		$(NAME)
 
-$(NAME):	$(LIBFTA) $(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) $(READ) -o $(NAME)
-			@echo "$(GREEN)$(NAME) has been created$(RESET)"
-
-$(LIBFTA):
-			@make -C libft
+$(NAME):	$(OBJS)
+				$(CC) $(CFLAGS) $(OBJS) $(READ) -o $(NAME)
+				@echo "$(GREEN)$(NAME) has been created$(RESET)"
 
 clean:
-			$(RM) $(OBJS)
-			@echo "$(RED)$(NAME) object files have been deleted$(RESET)"
+				$(RM) $(OBJS)
+				@echo "$(RED)$(NAME) object files have been deleted$(RESET)"
 
 fclean:		clean
-			$(RM) $(NAME)
-			make -C libft fclean
-			@echo "$(RED)$(NAME) havs been deleted$(RESET)"
+				$(RM) $(NAME)
+				@echo "$(RED)$(NAME) havs been deleted$(RESET)"
 
 re:			fclean all
 

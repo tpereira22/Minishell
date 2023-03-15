@@ -10,9 +10,17 @@ int check_quotation_marks(char *str)
         if (str[i] == '"')
         {
             i++;
-            while (str[i] != '"' && str[i] != '\0')
+            while (str[i] && str[i] != '"')
                 i++;
-            if (str[i] == '\0')
+            if (!str[i])
+                return (0);
+        }
+        else if (str[i] == 39)
+        {
+            i++;
+            while (str[i] && str[i] != 39)
+                i++;
+            if (!str[i])
                 return (0);
         }
         i++;
