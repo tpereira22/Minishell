@@ -12,13 +12,24 @@
 #define YELLOW "\e[1;93m"
 #define RESET "\e[0m"
 
-typedef struct s_check
+typedef struct s_input
 {
-    
-}   t_check;
+    char    *command;
+    char    **token_matrix;
+    int qt_flag;
+}   t_input;
 
 // check_str.c
-int check_quotation_marks(char *str);
+int check_qt_marks(char *str, int i);
+void    check_if_complete(char  *str);
+
+// get_input.c
+void    get_input();
+void    loop_promt(char *str, int qt);
+
+// str_parse.c
+void    str_parse(char *str);
+void    lexer(char *str);
 
 // tokenizer.c
 void    token_cpy(char *str, char **token, int start, int end);
@@ -32,6 +43,10 @@ char    **tokenizer(char *str);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int quotes_end(char *str, int i);
 int ft_strcmp(const char *s1, const char *s2);
+char    *ft_strjoin(char *s1, char *s2);
+size_t  ft_strlen(char *str);
+char    *ft_strcpy(char *str);
+t_input *_input(void);
 
 // minishell.c
 void    sig_handler();

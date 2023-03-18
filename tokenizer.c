@@ -82,11 +82,6 @@ char    **tokenizer(char *str)
     int index;
     int end;
 
-    if (!check_quotation_marks(str))
-    {
-        printf("Error! Missing quote closer\n");
-        return (NULL);
-    }
     len = matrix_len(str);
     if (len == 0)
         return (NULL);
@@ -106,12 +101,12 @@ char    **tokenizer(char *str)
         {
             end = token_len(str, i);
             token_matrix[index] = malloc(sizeof(char *) * (end - i + 1));
-            ft_memcpy(*token_matrix, str + i, end - i);
+            ft_memcpy(token_matrix[index], str + i, (end - i));
             token_matrix[index][end] = '\0';
             index++;
             i = end;
         }
-        if (str[i] != '\0')
+        else if (str[i] != '\0')
             i++;
     }
     return (token_matrix);

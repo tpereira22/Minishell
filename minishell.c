@@ -19,40 +19,30 @@ void    ignore_signal()
 
 int	main(void)
 {	
-	char	*command;
-    char **token_matrix;
-    int i;
-    int j;
+    // int i;
+    // int j;
 
     ignore_signal();
 	while (1)
 	{
-		command = readline(YELLOW"minishell> " RESET);
-		if (command && *command)
-			add_history(command);
-        // handles Ctrl+D
-        if (command == NULL || !strcmp(command, "exit"))
-        {
-            write(1, "\n", 1);
-            free(command);
-            exit(1);
-        }
-        token_matrix = tokenizer(command);
-        i = 0;
-        while (token_matrix[i])
-        {
-            j = 0;
-            while (token_matrix[i][j])
-            {
-                printf("%c", token_matrix[i][j]);
-                j++;
-            }
-            printf("\n");
-            i++;
-        }
-        free_token(token_matrix);
-        //printf("heeey\n");
-        free(command);
+        get_input();
+        str_parse(_input()->command);
+        free(_input()->command);
+        //i = 0;
+        // while (token_matrix[i] != NULL)
+        // {
+        //     j = 0;
+        //     printf("heeey\n");
+        //     while (token_matrix[i][j] != '\0')
+        //     {
+        //         printf("%c", token_matrix[i][j]);
+        //         j++;
+        //     }
+        //     printf("\n");
+        //     i++;
+        // }
+        //printf("\n");
+        // free_token(token_matrix);
 	}
 	return (0);
 }
