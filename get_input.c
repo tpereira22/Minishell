@@ -21,13 +21,13 @@ void    get_input()
     tmp_command = readline(YELLOW"minishell> " RESET);
     check_if_complete(tmp_command);
     // handles Ctrl+D
-    // if (_input()->command == NULL || !strcmp(_input()->command, "exit"))
-    // {
-    //     write(1, "\n", 1);
-    //     free(tmp_command);
-    //     free(_input()->command);
-    //     exit(1);
-    // }
+    if (_input()->command == NULL || !strcmp(_input()->command, "exit"))
+    {
+        write(1, "\n", 1);
+        //free(tmp_command);
+        free(_input()->command);
+        exit(1);
+    }
     if (_input()->command && *_input()->command)
         add_history(_input()->command);
 }

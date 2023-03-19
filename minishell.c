@@ -26,7 +26,7 @@ int	main(void)
 	while (1)
 	{
         get_input();
-        str_parse(_input()->command);
+        analyze_and_parse(_input()->command);
         free(_input()->command);
         //i = 0;
         // while (token_matrix[i] != NULL)

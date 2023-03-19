@@ -16,28 +16,28 @@ typedef struct s_input
 {
     char    *command;
     char    **token_matrix;
+    int index;
     int qt_flag;
 }   t_input;
 
 // check_str.c
 int check_qt_marks(char *str, int i);
 void    check_if_complete(char  *str);
+int check_pipe_done(char *str, int i);
 
 // get_input.c
 void    get_input();
 void    loop_promt(char *str, int qt);
 
 // str_parse.c
-void    str_parse(char *str);
-void    lexer(char *str);
+void    analyze_and_parse(char *str);
+void    tokenizer(char *str);
 
 // tokenizer.c
-void    token_cpy(char *str, char **token, int start, int end);
 void    free_token(char **token_matrix);
-int fill_matrix(char *str, char ***token_matrix);
 int token_len(char *str, int i);
 int matrix_len(char *str);
-char    **tokenizer(char *str);
+int qt_len(char *str, int i);
 
 // utils.c
 void	*ft_memcpy(void *dest, const void *src, size_t n);

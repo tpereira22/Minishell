@@ -4,7 +4,7 @@ RED		= 	\e[31m
 GREEN	= 	\e[32m
 RESET	= 	\e[0m
 
-SRCS	=	minishell.c check_str.c tokenizer.c utils.c get_input.c lexer.c
+SRCS	=	minishell.c check_str.c get_token.c utils.c get_input.c parser.c
 OBJS	=	$(SRCS:.c=.o)
 
 CC		=	gcc
