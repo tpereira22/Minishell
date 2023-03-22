@@ -63,6 +63,8 @@ char    *ft_strcpy(char *str)
 
     len = ft_strlen(str);
     cpy = malloc(sizeof(cpy) * len + 1);
+    if (!cpy)
+        return (NULL);
     i = 0;
     while (str[i])
     {
@@ -91,7 +93,7 @@ char    *ft_strjoin(char *s1, char *s2)
     size_t     i;
     size_t     j;
 
-    str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+    str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
     if (!str)
         return (NULL);
     i = 0;
@@ -104,9 +106,10 @@ char    *ft_strjoin(char *s1, char *s2)
         }
     }
     j = 0;
+    str[i] = '\n';
+    i++;
     while (s2[j] != '\0')
         str[i++] = s2[j++];
     str[i] = '\0';
-    //free(s1);
     return (str);
 }

@@ -13,8 +13,8 @@ void    ignore_signal()
 {
     signal(SIGINT, sig_handler);
     signal(SIGTSTP, SIG_IGN);
-    signal(SIGQUIT, SIG_IGN);
     signal(SIGSEGV, SIG_IGN);
+    //signal(SIGTSTP, SIG_IGN);
 }
 
 int	main(void)
@@ -26,7 +26,8 @@ int	main(void)
 	while (1)
 	{
         get_input();
-        analyze_and_parse(_input()->command);
+        printf("str - %s\n", _input()->command);
+        //analyze_and_parse(_input()->command);
         free(_input()->command);
         //i = 0;
         // while (token_matrix[i] != NULL)

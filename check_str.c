@@ -58,5 +58,4 @@ void    check_if_complete(char *str)
     }
     if (_input()->qt_flag == 1)
         _input()->command = ft_strcpy(str);
-    free(str);
 }

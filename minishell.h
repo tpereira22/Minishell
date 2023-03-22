@@ -9,6 +9,8 @@
 #include <string.h>
 #include <unistd.h>
 
+//#define malloc(x) NULL
+
 #define YELLOW "\e[1;93m"
 #define RESET "\e[0m"
 

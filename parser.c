@@ -8,6 +8,8 @@ void    tokenizer(char *str)
 
     len = matrix_len(str);
     _input()->token_matrix = malloc(sizeof(char *) * (len + 1));
+    if (!_input()->token_matrix)
+        return ;
     _input()->token_matrix[len] = '\0';
     i = 0;
     _input()->index = 0;

@@ -11,6 +11,7 @@ void    loop_promt(char *str, int flag)
     else if (flag == 3)
         command = readline(YELLOW"pipe> " RESET);
     command = ft_strjoin(str, command);
+    free(str);
     check_if_complete(command);
 }
 
@@ -20,11 +21,11 @@ void    get_input()
 
     tmp_command = readline(YELLOW"minishell> " RESET);
     check_if_complete(tmp_command);
+    free(tmp_command);
     // handles Ctrl+D
     if (_input()->command == NULL || !strcmp(_input()->command, "exit"))
     {
         write(1, "\n", 1);
-        //free(tmp_command);
         free(_input()->command);
         exit(1);
     }
